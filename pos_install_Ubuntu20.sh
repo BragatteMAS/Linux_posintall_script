@@ -85,6 +85,7 @@ sudo apt update -y
 mkdir "$DIR_DOWNLOADS"
 wget -c "$URL_GOOGLE_CHROME" -P "$Dir_Downloads"
 wget -c "$URLhttps://github.com/Ulauncher/Ulauncher/releases/download/5.7.5/ulauncher_5.7.5_all.deb"
+
 ## Installing .deb packages ##
 sudo dpkg -i $Dir_Downloads/*.deb
 sudo apt update -y
@@ -95,7 +96,7 @@ sudo apt install xpad -y # sticky note application for GTK
 sudo apt install synaptic #manager for Ubuntu
 sudo apt install git -y #control modifications
 sudo apt install stacer -y #clean and monitor programs
-sudo apt install gnome-sushi gnome-tweaks gnome-shell-extensions gnome-shell-extension-prefs chrome-gnome-shell -y # desktoip utilities
+sudo apt install gnome-sushi gnome-tweaks gnome-shell-extensions gnome-shell-extension-prefs chrome-gnome-shell ubuntu-restricted-extras -y # desktoip utilities
 gsettings set org.gnome.desktop.interface enable-hot-corners true #displaying the overview of the shell by bringing your mouse to the upper corner of the desktop automatically
 sudo apt install gdebi gufw htop  #system suporters
 #Browsers
