@@ -31,6 +31,7 @@
         #For example two OBStudio will be install in this script!
 #Options to select the flavor environmental (choose just one option if do not want GNOME - options: Cinnamon or KDE_Kubuntu or Xfce or Mate or LXqt or Budgie)
 
+
 echo -e '	\n Auto install Bragatte_mode!!!! \n	'
 
 ### ----------------------- Variable PPA & URLs ----------------------- ###
