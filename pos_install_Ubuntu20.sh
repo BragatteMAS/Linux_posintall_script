@@ -39,7 +39,7 @@ PPA_Lutris="ppa:lutris-team/lutris"
 PPA_Ulauncher="ppa:agornostal/ulauncher"
 
 URL_Ulauncher="https://github.com/Ulauncher/Ulauncher/releases/download/5.7.5/ulauncher_5.7.5_all.deb"
-#URL_PPA_Albert="https://download.opensuse.org/repositories/home:manu elschneid3r/xUbuntu_20.04/"
+#URL_PPA_Albert="https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_20.04/"
 #URL_Albert="https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_20.04/amd64/albert_0.16.1_amd64.deb"
 URL_PPA_Wine="https://dl.winehq.org/wine-builds/ubuntu/"
 URL_Wine_key="https://dl.winehq.org/wine-builds/winehq.key"
