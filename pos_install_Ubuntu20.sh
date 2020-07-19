@@ -2,7 +2,7 @@
 
 ##	+-----------------------------------+-----------------------------------+
 ##	|                                                                       |
-##	|                        Pos Install Scrypt PROMT                       |
+##	|                        Pos Install Scrypt                             |
 ##	|                                                                       |
 ##	| Copyright (c) 2020, Bragatte <marcelobragatte@gmail.com>.             |
 ##	|                                                                       |
@@ -22,82 +22,164 @@
 ##	|                                                                       |
 ##	+-----------------------------------------------------------------------+
 
-#NOTE: Run this script with 'sudo'
-#Versão 1.1_Ubuntu 20.04 LTS
-    #Method of installation:
-    #1) "sudo apt install..."
-    #2) "snap install..."
-    #3) "flatpak install flathub ..""
-        #For example two OBStudio will be install in this script!
-#Options to select the flavor environmental (choose just one option if do not want GNOME - options: Cinnamon or KDE_Kubuntu or Xfce or Mate or LXqt or Budgie)
+##
+## DESCRIPTION:
+## Versão 1.1_Ubuntu_base_20.04 LTS
+##
+## NOTE:
+## Run this script with 'sudo'!
+##
+## INSTALLATION:
+##      Method of installation:
+##          1) "sudo apt install..."
+##          2) "snap install..."
+##          3) "flatpak install flathub ..""
+##              For example two OBStudio will be install in this script!
+## Options to select the flavor environmental (choose just one option if do not want GNOME - options: Cinnamon or KDE_Kubuntu or Xfce or Mate or LXqt or Budgie)
+## Folder installation
+Directory_Downloads="$HOME/Downloads/programs"
+
+##############################################################################
+##  VARIABLES                                                               ##
+##############################################################################
+## Editable part from script
+## PPAs
+PPA_Graphics_drivers="ppa:graphics-drivers/ppa"
+PPA_Screenrecorder="ppa:maarten-baert/simplescreenrecorder"
+PPA_Lutris="ppa:lutris-team/lutris" #
+PPA_Libratbag="ppa:libratbag-piper/piper-libratbag-git" #
+PPA_Ulauncher="ppa:agornostal/ulauncher" #
+## URLs
+URL_PPA_Wine="https://dl.winehq.org/wine-builds/ubuntu/"
+URL_Wine_key="https://dl.winehq.org/wine-builds/winehq.key"
+URL_Google_Chrome="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+URL_4K_Video_Downloader="https://dl.4kdownload.com/app/4kvideodownloader_4.12.1-1_amd64.deb"
+URL_PPA_Albert="https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_20.04/" #
+URL_Albert="https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_20.04/amd64/albert_0.16.1_amd64.deb" #
+URL_Ulauncher="https://github.com/Ulauncher/Ulauncher/releases/download/5.7.5/ulauncher_5.7.5_all.deb" #
+URL_Balena="https://dl.bintray.com/etcher/debian/pool/stable/e/etcher/:balena-etcher-electron_1.5.80_amd64.deb" #
+## Programs # Put one name of program per line
+PROGRAMS_to_install_APT=(
+  synaptic #manager for Ubuntu
+  git -y #control modifications
+  stacer -y #clean and monitor programs
+  openssh-server -y # remotely controlling & transferring
+  xpad -y # sticky note application for GTK
+  gnome-sushi # visualization 
+  gnome-tweaks
+  gnome-shell-extensions
+  gnome-shell-extension-prefs
+  chrome-gnome-shell
+  ubuntu-restricted-extras
+  
+
+ mint-meta-codecs
+ winff
+ guvcview
+ virtualbox
+ flameshot
+ nemo-dropbox
+ steam-installer
+ steam-devices
+ steam:i386
+ ratbagd
+ piper
+ lutris
+ libvulkan1
+ libvulkan1:i386
+ libgnutls30:i386
+ libldap-2.4-2:i386
+ libgpg-error0:i386
+ libxml2:i386
+ libasound2-plugins:i386
+ libsdl2-2.0-0:i386
+ libfreetype6:i386
+ libdbus-1-3:i386
+ libsqlite3-0:i386
+)
+ 
+ PROGRAMS_to_install_SNAP=(
+ 
+ )
+
+ PROGRAMS_to_install_FLATHUB=(
+ 
+ )
+ 
 
 
 echo -e '	\n Auto install Bragatte_mode!!!! \n	'
 
-### ----------------------- Variable PPA & URLs ----------------------- ###
-PPA_Lutris="ppa:lutris-team/lutris"
-PPA_Ulauncher="ppa:agornostal/ulauncher"
-
-URL_Ulauncher="https://github.com/Ulauncher/Ulauncher/releases/download/5.7.5/ulauncher_5.7.5_all.deb"
-#URL_PPA_Albert="https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_20.04/"
-#URL_Albert="https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_20.04/amd64/albert_0.16.1_amd64.deb"
-URL_PPA_Wine="https://dl.winehq.org/wine-builds/ubuntu/"
-URL_Wine_key="https://dl.winehq.org/wine-builds/winehq.key"
-URL_GOOGLE_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-URL_4K_VIDEO_DOWNLOADER="https://dl.4kdownload.com/app/4kvideodownloader_4.12.1-1_amd64.deb"
-URL_Balena="https://dl.bintray.com/etcher/debian/pool/stable/e/etcher/:balena-etcher-electron_1.5.80_amd64.deb"
-Dir_Downloads="$HOME/Downloads/Programs"
-### ------------------------------------------------------------------- ###
-
-### --------------------- Basic system utilities ---------------------- ###
+##############################################################################
+##  Basic system utilities                                                  ##
+##############################################################################
 ## Removing any apt locks ##
 sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
-
-## Adding / Confirming 32-bit Architecture ##
+## Adding / Confirming 32-bit Architecture Google_Chrome##
 sudo dpkg --add-architecture i386
-
 ## Updating the repository ##
 sudo apt update -y
-
-### ---------- Adding 3rd Party Repositories and Snap Support --------- ###
+### Adding 3rd Party Repositories and Snap Support ##
+sudo apt-add-repository "$PPA_Graphics_drivers" -y
+sudo add-apt-repository "$PPA_Lutris" -y
+sudo apt-add-repository "$PPA_Libratbag" -y
 wget -nc "$URL_Wine_key"
 sudo apt-key add winehq.key
 sudo apt-add-repository "deb $URL_PPA_Wine focal main"
-#wget -nc "$URL_Albert"
-#sudo apt-key add Release.key
-#sudo apt-add-repository "deb $URL_PPA_Albert /"
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
+wget -nc "$URL_Albert"
+sudo apt-key add Release.key
+sudo apt-add-repository "deb $URL_PPA_Albert /"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
 wget -nc "$URL_Ulauncher"
 sudo apt-add-repository "deb $PPA_Ulauncher /"
 
-
-
-### ------------------------------------------------------------------- ###
-
-### ---------------------- Installing Programs ------------------------ ###
-sudo apt install snapd -y
-sudo apt install flatpak -y
-
+##############################################################################
+##  Automatization installing programs                                      ##
+##############################################################################
 ## Updating the repository ##
 sudo apt update -y
-
 ## Download and install external programs .deb ##
-mkdir "$DIR_DOWNLOADS"
-wget -c "$URL_GOOGLE_CHROME" -P "$Dir_Downloads"
-wget -c "$URLhttps://github.com/Ulauncher/Ulauncher/releases/download/5.7.5/ulauncher_5.7.5_all.deb"
+mkdir "$Directory_Downloads"
+wget -c "$URL_Google_Chrome"        -P "$Directory_Downloads"
+wget -c "$URL_Albert"               -P "$Directory_Downloads"
+wget -c "$URL_4K_Video_Downloader"  -P "$Directory_Downloads"
+wget -c "$URL_Ulauncher"            -P "$Directory_Downloads"
+## Directing files
+sudo dpkg -i $Directory_Downloads/*.deb
+## Loop auto-install APT
+for program_name in ${PROGRAMS_to_install_APT[@]}; do
+  if ! dpkg -l | grep -q $program_name; then # avoid repetition
+    apt install "$program_name" -y
+  else
+    echo "[installed] - $program_name"
+  fi
+done
+sudo apt update -y
+## Loop auto-install SNAP
+for program_name in ${PROGRAMS_to_install_SNAP[@]}; do
+  if ! dpkg -l | grep -q $program_name; then # avoid repetition
+    snap install "$program_name" -y
+  else
+    echo "[installed] - $program_name"
+  fi
+done
+sudo apt update -y
+## Loop auto-install FLATHUB
+for program_name in ${PROGRAMS_to_install_FLATHUB[@]}; do
+  if ! dpkg -l | grep -q $program_name; then # avoid repetition
+    flatpak install flathub "$program_name" -y
+  else
+    echo "[installed] - $program_name"
+  fi
+done
+sudo apt update -y
 
 ## Installing .deb packages ##
 sudo dpkg -i $Dir_Downloads/*.deb
 sudo apt update -y
-sudo apt install openssh-server -y # remotely controlling & transferring
-sudo apt install xpad -y # sticky note application for GTK
 
-#repository programs##
-sudo apt install synaptic #manager for Ubuntu
-sudo apt install git -y #control modifications
-sudo apt install stacer -y #clean and monitor programs
-sudo apt install gnome-sushi gnome-tweaks gnome-shell-extensions gnome-shell-extension-prefs chrome-gnome-shell ubuntu-restricted-extras -y # desktoip utilities
+#Configurations programs
 gsettings set org.gnome.desktop.interface enable-hot-corners true #displaying the overview of the shell by bringing your mouse to the upper corner of the desktop automatically
 sudo apt install gdebi gufw htop  #system suporters
 #Browsers
